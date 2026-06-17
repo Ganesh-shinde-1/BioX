@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Biogenetics-contact us {% endblock %}
+
+{%block seo%}
+
+{{contact.short_description}}
+
+{%endblock%}
+
+{% block content %}
+
+<section class="page-header">
+
+
+<div style="max-width:1000px;margin:auto;padding:30px;">
+
+<!-- Title -->
+<h1 style="text-align:center;color:#0a1a2f;font-size:36px;margin-bottom:10px;">
+Contact BioGenetics Lab
+</h1>
+
+<p style="text-align:center;color:#555;font-size:16px;margin-bottom:40px;">
+Have questions, suggestions, or collaboration ideas?  
+Our team is ready to help you.
+</p>
+
+<!-- Contact Cards -->
+<div style="display:flex;flex-wrap:wrap;gap:20px;justify-content:center;margin-bottom:40px;">
+
+<div style="flex:1;min-width:220px;background:white;padding:20px;border-radius:10px;text-align:center;box-shadow:0 4px 10px rgba(0,0,0,0.08);">
+<div style="font-size:28px;margin-bottom:10px;">📧</div>
+<h3 style="margin:0;color:#0a1a2f;">Email</h3>
+<p style="color:#555;">{{contact.email }}</p>
+</div>
+
+
+<div style="flex:1;min-width:220px;background:white;padding:20px;border-radius:10px;text-align:center;box-shadow:0 4px 10px rgba(0,0,0,0.08);">
+<div style="font-size:28px;margin-bottom:10px;">📍</div>
+<h3 style="margin:0;color:#0a1a2f;">Address</h3>
+<p style="color:#555;">{{ contact.address }}</p>
+</div>
+
+</div>
+
+<!-- Contact Form -->
+<div style="background:white;padding:30px;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,0.08);">
+
+<h2 style="color:#0a1a2f;margin-top:0;">Send Us a Message</h2>
+
+<form method="POST">
+{% csrf_token %}
+
+<input type="text" name="name" placeholder="Your Name"
+style="width:100%;padding:12px;margin-bottom:15px;border:1px solid #ccc;border-radius:6px;font-size:14px;">
+
+<input type="email" name="email" placeholder="Your Email"
+style="width:100%;padding:12px;margin-bottom:15px;border:1px solid #ccc;border-radius:6px;font-size:14px;">
+
+<input type="text" name="subject" placeholder="Subject"
+style="width:100%;padding:12px;margin-bottom:15px;border:1px solid #ccc;border-radius:6px;font-size:14px;">
+
+<textarea name="message" placeholder="Your Message"
+style="width:100%;height:130px;padding:12px;margin-bottom:20px;border:1px solid #ccc;border-radius:6px;font-size:14px;"></textarea>
+
+<button type="submit"
+style="background:#0a1a2f;color:white;padding:12px 25px;border:none;border-radius:6px;font-size:15px;cursor:pointer;">
+Send Message
+</button>
+
+</form>
+</div>
+
+</div>
+</section>
+
+
+{% endblock %}

@@ -1,0 +1,839 @@
+{% extends "base.html" %}
+
+
+{% block title %}Biogenetics{% endblock %}
+{%block seo%}
+
+{%for post in posts%}
+{{post.short_description}}
+{%endfor%}
+
+{%for news in news%}
+{{news.short_description}}
+{%endfor%}
+{%endblock%}
+
+{% block content %}
+
+
+
+{%if posts %}
+<div style="
+max-width:1400px;
+margin:40px auto;
+padding:clamp(15px,3vw,25px);
+background:#f8fafc;
+border-radius:25px;
+border:1px solid #dbeafe;
+box-shadow:0 10px 30px rgba(0,0,0,.05);
+">
+
+    <!-- Heading -->
+
+    <div style="margin-bottom:25px;">
+
+        <h2 style="
+        margin:0;
+        color:#0f172a;
+        font-size:clamp(24px,5vw,34px);
+        ">
+            Posts
+        </h2>
+
+
+    </div>
+
+    <!-- Cards -->
+
+    <div style="
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+    ">
+
+        <!-- Card 1 -->
+
+        {%for post in posts %}
+
+        <div style="
+        background:white;
+        border-radius:18px;
+        overflow:hidden;
+        box-shadow:0 5px 20px rgba(0,0,0,.08);
+        border:1px solid #e5e7eb;
+        ">
+
+            <img src="{{post.image.url}}"
+                 style="
+                 width:100%;
+                 height:clamp(180px,25vw,220px);
+                 object-fit:cover;
+                 ">
+
+            <div style="padding:20px;">
+
+                <div style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                flex-wrap:wrap;
+                gap:10px;
+                margin-bottom:12px;
+                ">
+
+                    <span style="
+                    background:#dbeafe;
+                    color:#2563eb;
+                    padding:6px 12px;
+                    border-radius:30px;
+                    font-size:12px;
+                    font-weight:700;
+                    ">
+                        Post
+                    </span>
+
+                      <span style="
+                    color:#090505;
+                    font-weight:700;
+                    ">
+                        Published: {{ post.publish|date:"F j, Y" }}
+                    </span>
+
+                </div>
+
+                <h3 style="
+                margin:0 0 10px;
+                font-size:clamp(20px,4vw,24px);
+                color:#111827;
+                ">
+{{post.title}}                </h3>
+
+                <p style="
+                color:#6b7280;
+                line-height:1.7;
+                ">
+{{post.short_description}}                </p>
+
+                <div style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                flex-wrap:wrap;
+                gap:10px;
+                margin-top:18px;
+                ">
+
+                    <span style="
+                    color:#ffffff;
+                    font-weight:700;
+                    ">
+                        </span>
+
+                    <a href="{% url 'posts' post.slug %}"
+                       style="
+                       text-decoration:none;
+                       background:#2563eb;
+                       color:white;
+                       padding:12px 20px;
+                       border-radius:10px;
+                       font-weight:600;
+                       display:inline-block;
+                       ">
+                        See →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {%endfor%}
+
+
+    </div>
+
+
+
+    <div style="
+    text-align:center;
+    margin-top:30px;
+    ">
+
+        <a href="{%url 'posts'%}"
+           style="
+           text-decoration:none;
+           background:#0f172a;
+           color:white;
+           padding:14px 28px;
+           border-radius:12px;
+           font-weight:700;
+           display:inline-block;
+           ">
+            View All Post →
+        </a>
+
+    </div>
+
+</div>
+{%endif%}
+
+
+
+{%if news %}
+<div style="
+max-width:1400px;
+margin:40px auto;
+padding:clamp(15px,3vw,25px);
+background:#f8fafc;
+border-radius:25px;
+border:1px solid #dbeafe;
+box-shadow:0 10px 30px rgba(0,0,0,.05);
+">
+
+    <!-- Heading -->
+
+    <div style="margin-bottom:25px;">
+
+        <h2 style="
+        margin:0;
+        color:#0f172a;
+        font-size:clamp(24px,5vw,34px);
+        ">
+            News
+        </h2>
+
+
+    </div>
+
+    <!-- Cards -->
+
+    <div style="
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+    ">
+
+        <!-- Card 1 -->
+
+        {%for post in news %}
+
+        <div style="
+        background:white;
+        border-radius:18px;
+        overflow:hidden;
+        box-shadow:0 5px 20px rgba(0,0,0,.08);
+        border:1px solid #e5e7eb;
+        ">
+
+            <img src="{{post.image.url}}"
+                 style="
+                 width:100%;
+                 height:clamp(180px,25vw,220px);
+                 object-fit:cover;
+                 ">
+
+            <div style="padding:20px;">
+
+                <div style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                flex-wrap:wrap;
+                gap:10px;
+                margin-bottom:12px;
+                ">
+
+                    <span style="
+                    background:#dbeafe;
+                    color:#e80000;
+                    padding:6px 12px;
+                    border-radius:30px;
+                    font-size:12px;
+                    font-weight:700;
+                    ">
+                        News
+                    </span>
+
+                      <span style="
+                    color:#090505;
+                    font-weight:700;
+                    ">
+                        Published: {{ post.date|date:"F j, Y" }}
+                    </span>
+
+                </div>
+
+                <h3 style="
+                margin:0 0 10px;
+                font-size:clamp(20px,4vw,24px);
+                color:#111827;
+                ">
+{{post.title}}                </h3>
+
+                <p style="
+                color:#6b7280;
+                line-height:1.7;
+                ">
+{{post.short_description}}                </p>
+
+                <div style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                flex-wrap:wrap;
+                gap:10px;
+                margin-top:18px;
+                ">
+
+                    <span style="
+                    color:#ffffff;
+                    font-weight:700;
+                    ">
+                        </span>
+
+                    <a href="{% url 'news' post.slug %}"
+                       style="
+                       text-decoration:none;
+                       background:#2563eb;
+                       color:white;
+                       padding:12px 20px;
+                       border-radius:10px;
+                       font-weight:600;
+                       display:inline-block;
+                       ">
+                        See →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {%endfor%}
+
+
+    </div>
+
+
+
+    <div style="
+    text-align:center;
+    margin-top:30px;
+    ">
+
+        <a href="{%url 'news'%}"
+           style="
+           text-decoration:none;
+           background:#0f172a;
+           color:white;
+           padding:14px 28px;
+           border-radius:12px;
+           font-weight:700;
+           display:inline-block;
+           ">
+            View All news →
+        </a>
+
+    </div>
+
+</div>
+{%endif%}
+
+
+
+{%if researches %}
+<div style="
+max-width:1400px;
+margin:40px auto;
+padding:clamp(15px,3vw,25px);
+background:#f8fafc;
+border-radius:25px;
+border:1px solid #dbeafe;
+box-shadow:0 10px 30px rgba(0,0,0,.05);
+">
+
+    <!-- Heading -->
+
+    <div style="margin-bottom:25px;">
+
+        <h2 style="
+        margin:0;
+        color:#0f172a;
+        font-size:clamp(24px,5vw,34px);
+        ">
+            Researches
+        </h2>
+
+
+    </div>
+
+    <!-- Cards -->
+
+    <div style="
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+    ">
+
+        <!-- Card 1 -->
+
+        {%for post in researches %}
+
+        <div style="
+        background:white;
+        border-radius:18px;
+        overflow:hidden;
+        box-shadow:0 5px 20px rgba(0,0,0,.08);
+        border:1px solid #e5e7eb;
+        ">
+
+            <img src="{{post.image.url}}"
+                 style="
+                 width:100%;
+                 height:clamp(180px,25vw,220px);
+                 object-fit:cover;
+                 ">
+
+            <div style="padding:20px;">
+
+                <div style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                flex-wrap:wrap;
+                gap:10px;
+                margin-bottom:12px;
+                ">
+
+                    <span style="
+                    background:#dbeafe;
+                    color:#11fb57;
+                    padding:6px 12px;
+                    border-radius:30px;
+                    font-size:12px;
+                    font-weight:700;
+                    ">
+                        research
+                    </span>
+
+                      <span style="
+                    color:#090505;
+                    font-weight:700;
+                    ">
+                        Published: {{ post.published_date|date:"F j, Y" }}
+                    </span>
+
+                </div>
+
+                <h3 style="
+                margin:0 0 10px;
+                font-size:clamp(20px,4vw,24px);
+                color:#111827;
+                ">
+{{post.title}}                </h3>
+
+                <p style="
+                color:#6b7280;
+                line-height:1.7;
+                ">
+{{post.short_description}}                </p>
+
+                <div style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                flex-wrap:wrap;
+                gap:10px;
+                margin-top:18px;
+                ">
+
+                    <span style="
+                    color:#ffffff;
+                    font-weight:700;
+                    ">
+                        </span>
+
+                    <a href="{% url 'research_slug' post.slug %}"
+                       style="
+                       text-decoration:none;
+                       background:#2563eb;
+                       color:white;
+                       padding:12px 20px;
+                       border-radius:10px;
+                       font-weight:600;
+                       display:inline-block;
+                       ">
+                        See →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {%endfor%}
+
+
+    </div>
+
+
+
+    <div style="
+    text-align:center;
+    margin-top:30px;
+    ">
+
+        <a href="{%url 'research'%}"
+           style="
+           text-decoration:none;
+           background:#0f172a;
+           color:white;
+           padding:14px 28px;
+           border-radius:12px;
+           font-weight:700;
+           display:inline-block;
+           ">
+            View All researches →
+        </a>
+
+    </div>
+
+</div>
+{%endif%}
+
+{%if blogs %}
+<div style="
+max-width:1400px;
+margin:40px auto;
+padding:clamp(15px,3vw,25px);
+background:#f8fafc;
+border-radius:25px;
+border:1px solid #dbeafe;
+box-shadow:0 10px 30px rgba(0,0,0,.05);
+">
+
+    <!-- Heading -->
+
+    <div style="margin-bottom:25px;">
+
+        <h2 style="
+        margin:0;
+        color:#0f172a;
+        font-size:clamp(24px,5vw,34px);
+        ">
+            Blogs
+        </h2>
+
+
+    </div>
+
+    <!-- Cards -->
+
+    <div style="
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+    ">
+
+        <!-- Card 1 -->
+
+        {%for post in blogs %}
+
+        <div style="
+        background:white;
+        border-radius:18px;
+        overflow:hidden;
+        box-shadow:0 5px 20px rgba(0,0,0,.08);
+        border:1px solid #e5e7eb;
+        ">
+
+            <img src="{{post.image.url}}"
+                 style="
+                 width:100%;
+                 height:clamp(180px,25vw,220px);
+                 object-fit:cover;
+                 ">
+
+            <div style="padding:20px;">
+
+                <div style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                flex-wrap:wrap;
+                gap:10px;
+                margin-bottom:12px;
+                ">
+
+                    <span style="
+                    background:#dbeafe;
+                    color:#7ab719;
+                    padding:6px 12px;
+                    border-radius:30px;
+                    font-size:12px;
+                    font-weight:700;
+                    ">
+                        Blog
+                    </span>
+
+                      <span style="
+                    color:#090505;
+                    font-weight:700;
+                    ">
+                        Published: {{ post.date_of_publish|date:"F j, Y" }}
+                    </span>
+
+                </div>
+
+                <h3 style="
+                margin:0 0 10px;
+                font-size:clamp(20px,4vw,24px);
+                color:#111827;
+                ">
+{{post.title}}                </h3>
+
+                <p style="
+                color:#6b7280;
+                line-height:1.7;
+                ">
+{{post.short_description}}                </p>
+
+                <div style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                flex-wrap:wrap;
+                gap:10px;
+                margin-top:18px;
+                ">
+
+                    <span style="
+                    color:#ffffff;
+                    font-weight:700;
+                    ">
+                        </span>
+
+                    <a href="{% url 'blogs' post.slug %}"
+                       style="
+                       text-decoration:none;
+                       background:#2563eb;
+                       color:white;
+                       padding:12px 20px;
+                       border-radius:10px;
+                       font-weight:600;
+                       display:inline-block;
+                       ">
+                        See →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {%endfor%}
+
+
+    </div>
+
+
+
+    <div style="
+    text-align:center;
+    margin-top:30px;
+    ">
+
+        <a href="{%url 'blogs'%}"
+           style="
+           text-decoration:none;
+           background:#0f172a;
+           color:white;
+           padding:14px 28px;
+           border-radius:12px;
+           font-weight:700;
+           display:inline-block;
+           ">
+            View All Blogs →
+        </a>
+
+    </div>
+
+</div>
+
+
+
+
+{%endif%}
+
+
+
+{%if updates %}
+
+<div style="
+max-width:1400px;
+margin:40px auto;
+padding:clamp(15px,3vw,25px);
+background:#f8fafc;
+border-radius:25px;
+border:1px solid #dbeafe;
+box-shadow:0 10px 30px rgba(0,0,0,.05);
+">
+
+    <!-- Heading -->
+
+    <div style="margin-bottom:25px;">
+
+        <h2 style="
+        margin:0;
+        color:#0f172a;
+        font-size:clamp(24px,5vw,34px);
+        ">
+            Exam
+        </h2>
+
+
+    </div>
+
+    <!-- Cards -->
+
+    <div style="
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+    ">
+
+        <!-- Card 1 -->
+
+        {%for post in updates %}
+
+        <div style="
+        background:white;
+        border-radius:18px;
+        overflow:hidden;
+        box-shadow:0 5px 20px rgba(0,0,0,.08);
+        border:1px solid #e5e7eb;
+        ">
+
+            <img src="{{post.image.url}}"
+                 style="
+                 width:100%;
+                 height:clamp(180px,25vw,220px);
+                 object-fit:cover;
+                 ">
+
+            <div style="padding:20px;">
+
+                <div style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                flex-wrap:wrap;
+                gap:10px;
+                margin-bottom:12px;
+                ">
+
+                    <span style="
+                    background:#dbeafe;
+                    color:#4d612d;
+                    padding:6px 12px;
+                    border-radius:30px;
+                    font-size:12px;
+                    font-weight:700;
+                    ">
+                        Exam
+                    </span>
+
+                      <span style="
+                    color:#090505;
+                    font-weight:700;
+                    ">
+                        Published: {{ post.publish|date:"F j, Y" }}
+                    </span>
+
+                </div>
+
+                <h3 style="
+                margin:0 0 10px;
+                font-size:clamp(20px,4vw,24px);
+                color:#111827;
+                ">
+{{post.title}}                </h3>
+
+                <p style="
+                color:#6b7280;
+                line-height:1.7;
+                ">
+{{post.short_description}}                </p>
+
+                <div style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                flex-wrap:wrap;
+                gap:10px;
+                margin-top:18px;
+                ">
+
+                    <span style="
+                    color:#ffffff;
+                    font-weight:700;
+                    ">
+                        </span>
+
+                    <a href="{% url 'exam_detail' post.slug %}"
+                       style="
+                       text-decoration:none;
+                       background:#2563eb;
+                       color:white;
+                       padding:12px 20px;
+                       border-radius:10px;
+                       font-weight:600;
+                       display:inline-block;
+                       ">
+                        See →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {%endfor%}
+
+
+    </div>
+
+
+
+    <div style="
+    text-align:center;
+    margin-top:30px;
+    ">
+
+        <a href="{%url 'exams'%}"
+           style="
+           text-decoration:none;
+           background:#0f172a;
+           color:white;
+           padding:14px 28px;
+           border-radius:12px;
+           font-weight:700;
+           display:inline-block;
+           ">
+            View All Updates →
+        </a>
+
+    </div>
+
+</div>
+
+{%endif%}
+
+
+
+{% endblock %}

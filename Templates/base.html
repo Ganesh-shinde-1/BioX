@@ -1,0 +1,236 @@
+{%load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description" content="
+{%block seo%}
+{%endblock%}
+"
+>
+
+
+<link rel="stylesheet" href="{%static 'css/style.css'%}">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+
+<!-- Basic SEO -->
+<title>{% block title %}{% endblock %}</title>
+
+<meta name="description" content="Biogenetics Lab provides biotechnology research insights, scientific news, biotechnology blogs, and exam updates for students, researchers, and professionals in genetic science and biotechnology.">
+
+<meta name="keywords" content="biotechnology research, genetics research, biotech news, biotechnology blogs, biotechnology exam updates, DNA research, life science research, biotech discoveries, molecular biology, genetic engineering">
+
+<meta name="author" content="Biogenetics Lab">
+
+<meta name="robots" content="index, follow">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<!-- Open Graph SEO (Social Media) -->
+<meta property="og:title" content="Biogenetics Lab | Biotechnology Research & Updates">
+
+<meta property="og:description" content="Explore biotechnology research, biotech news, scientific blogs, and exam updates for students and professionals in life sciences.">
+
+<meta property="og:type" content="website">
+
+
+
+
+<!-- Twitter SEO -->
+<meta name="twitter:card" content="summary_large_image">
+
+<meta name="twitter:title" content="Biogenetics Lab | Biotechnology Research & Updates">
+
+<meta name="twitter:description" content="Latest biotechnology research, news, blogs, and exam updates for life science students and researchers.">
+
+
+
+
+
+<!-- Favicon -->
+<link rel="icon" href="{%static 'img/fevicon.png'%}" type="image/png">
+</head>
+
+<body>
+
+
+    <header class="navbar">
+
+<div class="logo">
+    <a style="text-decoration: none;"  class="logo" href="{%url 'home' %}">
+
+        🧬 Nikita Biotech
+    </a>
+</div>
+
+<div class="menu-toggle" id="menuToggle">
+☰
+</div>
+
+<nav id="navMenu">
+
+<a href="{% url 'home' %}" class="nav-link {% if request.path == '/' %}active{% endif %}">Home</a>
+
+<a href="{% url 'research' %}" class="nav-link {% if 'research' in request.path %}active{% endif %}">Research</a>
+
+<a href="{% url 'posts' %}" class="nav-link {% if 'posts' in request.path %}active{% endif %}">Posts</a>
+
+<a href="{% url 'blogs' %}" class="nav-link {% if 'blogs' in request.path %}active{% endif %}">Blogs</a>
+
+<a href="{% url 'news' %}" class="nav-link {% if 'news' in request.path %}active{% endif %}">News</a>
+
+<a href="{% url 'exams' %}" class="nav-link {% if 'exam' in request.path %}active{% endif %}">Exam Updates</a>
+
+<a href="{% url 'about' %}" class="nav-link {% if 'about' in request.path %}active{% endif %}">About</a>
+
+<a href="{% url 'contact' %}" class="nav-link {% if 'contact' in request.path %}active{% endif %}">Contact</a>
+</nav>
+
+</header>
+
+
+{% block content %}
+
+{% endblock %}
+
+
+<div id="popup" class="popup">
+
+<div class="popup-container">
+
+<span class="popup-close" onclick="closePopup()">×</span>
+
+<div class="popup-header">
+
+<img id="popup-img">
+
+<h2 id="popup-title"></h2>
+
+</div>
+
+<div class="popup-body">
+
+<p id="popup-text"></p>
+
+<div id="popup-content"></div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<footer style="background:#0a1a2f;color:white;padding:50px 20px 20px;font-family:Arial,Helvetica,sans-serif;">
+
+<div style="max-width:1100px;margin:auto;display:flex;flex-wrap:wrap;gap:30px;justify-content:space-between;">
+
+<!-- About -->
+<div style="flex:1;min-width:220px;">
+<h3 style="margin-bottom:10px;">NikitaBiotech</h3>
+<p style="font-size:14px;color:#cfd6e1;line-height:1.6;">
+Advancing genetic engineering and molecular biology through research and innovation.
+</p>
+</div>
+
+
+
+<!-- Contact -->
+<div style="flex:1;min-width:180px;">
+</div>
+
+<!-- Social -->
+<div style="flex:1;min-width:220px;">
+<h4 style="margin-bottom:10px;">Follow Us</h4>
+
+<p style="font-size:14px;color:#cfd6e1;">
+Latest research updates and biotechnology news.
+</p>
+
+<div style="display:flex;gap:10px;margin-top:10px;">
+
+<a href="{{about.facebook}}" target="_blank" style="width:36px;height:36px;background:#1f2e47;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+<img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg" width="16" style="filter:invert(1);">
+</a>
+
+<a href="{{about.twitter}}" target="_blank" style="width:36px;height:36px;background:#1f2e47;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+<img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg" width="16" style="filter:invert(1);">
+</a>
+
+<a href="{{about.insta}}" target="_blank" style="width:36px;height:36px;background:#1f2e47;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+<img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg" width="16" style="filter:invert(1);">
+</a>
+
+<a href="mailto:{{about.email}}" target="_blank" style="width:36px;height:36px;background:#1f2e47;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+<img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/gmail.svg" width="16" style="filter:invert(1);">
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<p style="text-align:center;margin-top:30px;font-size:13px;color:#aaa;">
+© 2026 Nikita Biotech | All Rights Reserved
+</p>
+
+
+
+<p style="text-align:center;font-size:13px;color:#aaa;margin-top:5px;">
+Developed by 
+<a href="{{about.company}}" target="_blank" 
+style="color:#4da6ff;text-decoration:none;font-weight:500;">
+Wankhede Technology
+</a>
+</p>
+
+</footer>
+
+
+<!-- POPUP ARTICLE -->
+
+<div id="popup" class="popup">
+
+<div class="popup-content">
+
+<span class="close">&times;</span>
+
+<img id="popup-img">
+
+<h2 id="popup-title"></h2>
+
+<p id="popup-text"></p>
+
+</div>
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+    const menuToggle = document.getElementById("menuToggle");
+    const navMenu = document.getElementById("navMenu");
+
+    menuToggle.addEventListener("click", function() {
+
+        if (navMenu.style.display === "flex") {
+            navMenu.style.display = "none";
+        } else {
+            navMenu.style.display = "flex";
+        }
+
+    });
+
+});
+</script>
+<script src="{%static 'js/script.js'%}"></script>
+
+</body>
+</html>

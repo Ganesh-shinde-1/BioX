@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Biogenetics-About us {% endblock %}
+{%block seo%}
+{{about.short_description}}
+
+{%endblock%}
+{% block content %}
+
+{%if about%}
+<section class="page-header" style="background:#f5f7fb;padding:40px 20px;">
+
+<div style="max-width:1000px;margin:auto;background:white;padding:30px;border-radius:8px;box-shadow:0 4px 15px rgba(0,0,0,0.08);box-sizing:border-box;">
+
+<!-- Title -->
+<h1 style="font-size:34px;color:#0a1a2f;margin-top:0;">
+{{ about.title }}
+</h1>
+
+{%if about.image%}
+<!-- Image -->
+<img src="{{ about.image.url }}" , alt="img"
+style="width:100%;max-width:100%;border-radius:8px;margin:25px 0;display:block;">
+{%endif%}
+<!-- Content -->
+<div style="font-size:16px;line-height:1.7;color:#444;word-wrap:break-word;">
+{{ about.content|safe }}
+</div>
+
+</div>
+
+</section>
+
+{%endif%}
+{% endblock %}

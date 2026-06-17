@@ -1,0 +1,271 @@
+{% extends "base.html" %}
+{% block title %}Biogenetics-Exam updates {% endblock %}
+{%block seo%}
+
+{%for update in updates%}
+{{update.short_description}}
+{%endfor%}
+{%endblock%}
+{% block content %}
+
+
+
+<div style="max-width:1400px;margin:auto;padding:20px;font-family:Arial,sans-serif;">
+
+    <!-- Title -->
+    <div style="margin-bottom:25px;">
+        <h2 style="margin:0;color:#003366;font-size:32px;">
+            Latest Exam Updates
+        </h2>
+
+        <p style="color:#666;margin-top:8px;">
+            Government Jobs, Admit Cards, Results.
+        </p>
+    </div>
+
+    <!-- Categories -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:25px;">
+
+
+
+        {%if categories %}
+        {%for cat in categories%}
+{% if cat.name|lower == "ssc" %}
+        <a href="{% url 'exam_list' cat.name %}" style="text-decoration:none;background:#0d6efd;color:white;padding:18px;border-radius:8px;text-align:center;font-weight:bold;">{{cat.name}} Jobs</a>
+        
+{% elif cat.name|lower == "mpsc" %}
+
+<a href="{% url 'exam_list' cat.name %}" style="text-decoration:none;background:#6f42c1;color:white;padding:18px;border-radius:8px;text-align:center;font-weight:bold;">{{cat.name}}</a>
+
+
+{% elif cat.name|lower == "police" %}
+
+
+
+<a href="{% url 'exam_list' cat.name %}" style="text-decoration:none;background:#fd7e14;color:white;padding:18px;border-radius:8px;text-align:center;font-weight:bold;">{{cat.name}} Bharti</a>
+      
+{% elif cat.name|lower == "bank" %}
+<a href="{% url 'exam_list' cat.name %}" style="text-decoration:none;background:#dc3545;color:white;padding:18px;border-radius:8px;text-align:center;font-weight:bold;">{{cat.name}} Jobs</a>
+
+
+
+{% elif cat.name|lower == "railway" %}
+
+
+<a href="{% url 'exam_list' cat.name %}" style="text-decoration:none;background:#198754;color:white;padding:18px;border-radius:8px;text-align:center;font-weight:bold;">{{cat.name}}  Jobs</a>
+
+
+{% elif cat.name|lower == "teaching" %}
+
+<a href="{% url 'exam_list' cat.name %}" style="text-decoration:none;background:#20c997;color:white;padding:18px;border-radius:8px;text-align:center;font-weight:bold;">{{cat.name}} Jobs</a>
+
+
+{% else %}
+
+<a href="{% url 'exam_list' cat.name %}" style="text-decoration:none;background:#198754;color:white;padding:18px;border-radius:8px;text-align:center;font-weight:bold;">{{cat.name}} Jobs</a>
+{%endif%}
+
+        {%endfor%}
+        {%endif%}
+
+
+
+
+
+
+    </div>
+
+
+    
+
+    <!-- Main Grid Responsive -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
+
+  <!-- Latest Recruitment -->
+<div style="background:white;border:1px solid #ddd;border-radius:10px;overflow:hidden;">
+
+    <div style="background:#003366;color:white;padding:15px;font-size:20px;font-weight:bold;">
+        Latest Recruitment
+    </div>
+
+    <div style="padding:15px;">
+
+      {% for exam in exams|slice:":5" %}
+
+        <div style="padding:12px 0;border-bottom:1px solid #eee;">
+
+            <a href="{% url 'exam_detail' exam.slug %}"
+               style="text-decoration:none;color:#000;font-weight:600;">
+⭐
+                {{ exam.title }}
+
+            </a>
+
+            <div style="color:red;font-size:13px;">
+                Last Date :
+                {{ exam.last_date|date:"d M Y" }}
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div style="padding:12px 0;">
+            No Recruitment Available
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+        <!-- Admit Card -->
+        <div style="background:white;border:1px solid #ddd;border-radius:10px;overflow:hidden;">
+
+            <div style="background:#198754;color:white;padding:15px;font-size:20px;font-weight:bold;">
+                Admit Card
+            </div>
+
+            <div style="padding:15px;">
+                    {%if admit_cards%}
+                    {%for ad in admit_cards%}
+                    
+                        <a href="{{ad.official_link}}" target="_blank" style="text-decoration:none; color: black;"> 🎫 {{ad.exam}} </a>
+                    
+                    {%endfor%}
+                    {%endif%}
+                  
+               
+            </div>
+
+        </div>
+
+        <!-- Results -->
+        <div style="background:white;border:1px solid #ddd;border-radius:10px;overflow:hidden;">
+
+            <div style="background:#dc3545;color:white;padding:15px;font-size:20px;font-weight:bold;">
+                Results
+            </div>
+
+            <div style="padding:15px;">
+                  {%if results%}
+                    {%for result in results%}
+                    
+                        <a href="{{result.official_link}}" target="_blank" style="text-decoration:none; color: black;"> 📊 {{result.exam}} </a>
+                    
+                    {%endfor%}
+                    {%endif%}
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <div style="max-width:1400px;margin:auto;padding:2px;font-family:Arial,sans-serif; padding-top: 3%;">
+
+{% if categories %}
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:20px;">
+
+    {% for category in categories %}
+
+        {% if category.exams.all %}
+
+        <div style="background:white;border:1px solid #ddd;border-radius:10px;overflow:hidden;">
+
+            <div style="background:#003366;color:white;padding:15px;font-size:20px;font-weight:bold;">
+                {{ category.name }} Jobs
+            </div>
+
+            <div style="padding:15px;">
+
+                {% for exam in category.exams.all %}
+
+                
+                    {% if exam.active %}
+
+                    <div style="padding:12px 0;border-bottom:1px solid #eee;">
+                        <a href="{% url 'exam_detail' exam.slug %}"
+               style="text-decoration:none;color:#000;font-weight:600;">
+
+               🚀 
+               {{ exam.title }}
+
+            </a>
+                
+                        <div style="color:red;font-size:13px;">
+                            Last Date : {{ exam.last_date }}
+                        </div>
+                    </div>
+
+                    {% endif %}
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    {% endfor %}
+
+</div>
+
+{% endif %}
+
+    
+  
+
+
+
+</div>
+
+
+
+
+
+<!-- Last Date Reminder -->
+<div style="margin-top:25px;background:#fff3cd;border:1px solid #ffe69c;padding:20px;border-radius:10px;">
+
+    <h3 style="margin-top:0;color:#856404;">
+        ⏰ Last Date Reminder
+    </h3>
+
+    <ul style="line-height:2;margin-bottom:0;padding-left:18px;">
+
+        {% for exam in exams %}
+
+        <li>
+            <a href="{% url 'exam_detail' exam.slug %}"
+               style="text-decoration:none;color:#000;font-weight:600;">
+
+                {{ exam.title }}
+
+            </a>
+
+            <span style="color:#dc2626;font-weight:bold;">
+                – {{ exam.last_date|date:"d M Y" }}
+            </span>
+        </li>
+
+        {% empty %}
+
+        <li>No upcoming deadlines.</li>
+
+        {% endfor %}
+
+    </ul>
+
+</div>
+
+
+</div>
+
+
+
+{% endblock %}
